@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% comment %} 세부 영화 조회 {% endcomment %}
+
+{% block content %}
+  <div class="container w-70">
+    <br>
+    <div class="d-flex">
+      <img src="{{ movie.poster_path }}" alt="영화이미지" width="500px" class="m-5">
+      <div class="d-flex flex-column m-5 justify-content-between w-100">
+        <div>
+          <h2 class="text-center text-secondary mt-3 mb-5">{{ movie.title }}</h2>
+          <h5 class="text-secondary">{{ movie.overview }}</h5>
+        </div>
+        <div class="d-flex justify-content-end">
+          <a href ="{% url 'movies:edit' movie.pk %}" class="mx-1">
+            <button class="btn btn-success">
+              MODIFY
+            </button>
+          </a>
+          <form action="{% url 'movies:delete' movie.pk %}" method="POST" class="mx-1">
+            {% csrf_token %}
+            <button class="btn btn-secondary">DELETE</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+
+  </div>
+  <br><br>
+
+{% endblock content %}

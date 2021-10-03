@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% comment %} 전체 목록 조회 {% endcomment %}
+
+{% block content %}
+  <br><br>
+  <section class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+      {% for movie in movies %}
+        <article class="col">
+          <div class="card">
+            <a href="{% url 'movies:detail' movie.pk %}" class="text-decoration-none text-dark"><img src="{{ movie.poster_path }}" class="card-img-top" alt="..."></a>
+            <div class="card-body">
+              <h5 class="card-title text-center"><a href="{% url 'movies:detail' movie.pk %}" class="text-decoration-none text-dark">
+                {{ movie.title }}
+              </a></h5>
+            </div>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+  <br><br>
+{% endblock content %}
